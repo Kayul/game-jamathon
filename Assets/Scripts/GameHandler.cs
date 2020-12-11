@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour
 {
+    public float health = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,6 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        health -= Time.deltaTime;
     }
 }

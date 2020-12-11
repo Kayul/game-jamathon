@@ -15,20 +15,17 @@ public class TileHandler : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(TryPlantAt(0, 3, "carrot"));
-        Debug.Log(TryPlantAt(0, 2, ""));
-        Debug.Log(TryPlantAt(1, 1, "carrot"));
-        Debug.Log(TryTillAt(1, 1));
-        Debug.Log(TryPlantAt(1, 1, "carrot"));
-        Debug.Log(TryTillAt(1, 1));
-        Debug.Log(TryTillAt(1, 0));
-        Debug.Log(TryTillAt(2, 2));
+
     }
 
-    void Update()
+    public List<string> GetAllPlants()
     {
-        if (Input.GetMouseButtonDown(0))
-            Debug.Log(TryHarvestAt(1, 1));
+        List<string> output = new List<string>();
+        foreach (PlantData plant in plantList)
+        {
+            output.Add(plant.plantNames[0]);
+        }
+        return output;
     }
 
     private PlantData GetPlantData(string plantName)
@@ -130,5 +127,13 @@ public class TileHandler : MonoBehaviour
     {
         public List<string> plantNames;
         public GameObject plant;
+    }
+
+    public struct TileDisplayInfo
+    {
+        string contents;
+        string growthPercentage;
+        int tileX;
+        int tileY;
     }
 }

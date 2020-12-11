@@ -11,6 +11,8 @@ public class GameHandler : MonoBehaviour
     public GameObject frank;
     public GameObject stone;
 
+    public static bool GameActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,16 +22,19 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frankhp.GetComponent<Text>().text = health.ToString();
+        if (GameActive)
+        {
+            frankhp.GetComponent<Text>().text = health.ToString();
 
-        if (health < 0)
-        {
-            stone.SetActive(true);
-            frank.SetActive(false);
-        }
-        else
-        {
-            health -= Time.deltaTime;
+            if (health < 0)
+            {
+                stone.SetActive(true);
+                frank.SetActive(false);
+            }
+            else
+            {
+                health -= Time.deltaTime;
+            }
         }
     }
 }

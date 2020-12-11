@@ -63,7 +63,7 @@ public class OutputWindow : MonoBehaviour
             inputField.transform.parent.GetComponent<InputField>().text = "";
         }
 
-        if (commandHistory.Count > 9) commandHistory.RemoveAt(0);
+        if (commandHistory.Count > 11) commandHistory.RemoveAt(0);
     }
 
     public void OnCommand(string command, string[] args=null)
@@ -131,5 +131,11 @@ public class OutputWindow : MonoBehaviour
         }
 
         outputField.GetComponent<Text>().text = output;
+    }
+
+    public struct Command
+    {
+        public string command;
+        public List<string> args;
     }
 }

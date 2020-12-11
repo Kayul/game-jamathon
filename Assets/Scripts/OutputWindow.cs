@@ -35,11 +35,14 @@ public class OutputWindow : MonoBehaviour
 
     private string GetCommands()
     {
-        commandHistory.Add("<b>Commands:</b>\n");
+        commandHistory.Add("<b>Commands:</b>");
         foreach (string s in commandsList)
         {
             commandHistory.Add($"  {s} [x] [y] [args]");
         }
+        commandHistory.Add("<b>Available Seeds/Plants:</b>");
+        commandHistory.Add("   <color=#F87210>Carrot</color>");
+        commandHistory.Add("   <color=#C1B338>Wheat</color>");
         return "";
     }
 
@@ -59,12 +62,12 @@ public class OutputWindow : MonoBehaviour
             inputField.transform.parent.GetComponent<InputField>().ActivateInputField();
             inputField.transform.parent.GetComponent<InputField>().text = "";
         }
+
+        if (commandHistory.Count > 9) commandHistory.RemoveAt(0);
     }
 
     public void OnCommand(string command, string[] args=null)
     {
-        if (commandHistory.Count > 9) commandHistory.Clear();
-
         if (!DoesCommandExist(command))
         {
             commandHistory.Add("<b><color=#D30000>That command does not exist. Use 'help' for more information</color></b>");
@@ -76,7 +79,7 @@ public class OutputWindow : MonoBehaviour
         try
         {
             TileHandler th = GameObject.Find("TileHandler").GetComponent<TileHandler>();
-            switch (command)
+            switch (command.ToLower())
             {
                 default:
                     break;
